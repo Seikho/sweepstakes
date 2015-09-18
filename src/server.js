@@ -1,13 +1,12 @@
-import Hapi = require('hapi');
+var Hapi = require('hapi');
 var logger = require('ls-logger');
 var inert = require('inert');
-export = server;
-
 var server = new Hapi.Server();
-server.register(inert, err => {
+server.register(inert, function (err) {
     logger.error('Unable to load "inert" middleware');
 });
-
 server.connection({
     port: 1923
 });
+module.exports = server;
+//# sourceMappingURL=server.js.map
