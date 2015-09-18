@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.5",
+    "cajon": "^0.2.11",
     "hapi": "^10.0.0",
     "knex": "^0.8.6",
     "knockout": "^3.3.0",
