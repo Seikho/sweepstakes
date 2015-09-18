@@ -1,0 +1,34 @@
+{
+  "name": "sweepstakes",
+  "version": "0.0.1",
+  "description": "Sweepstakes Web Application",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seikho/sweepstakes.git"
+  },
+  "keywords": [
+    "typescript"
+  ],
+  "author": "Carl Winkler",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/seikho/sweepstakes/issues"
+  },
+  "homepage": "https://github.com/seikho/sweepstakes#readme",
+  "devDependencies": {
+    "typescript": "1.6.0-beta"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.5",
+    "knex": "^0.8.6",
+    "knockout": "^3.3.0",
+    "ls-auth-api": "^0.7.2",
+    "sqlite3": "^3.1.0",
+    "typescript": "^1.6.2"
+  }
+}
