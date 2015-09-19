@@ -20,7 +20,7 @@ server.route({
 });
 server.route({
     method: 'GET',
-    path: '/fonts',
+    path: '/fonts/{param*}',
     handler: {
         directory: {
             path: path.resolve(__dirname, '../../../node_modules/bootstrap/fonts')
