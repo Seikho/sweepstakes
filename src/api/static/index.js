@@ -1,6 +1,6 @@
 var path = require('path');
 var server = require('../../server');
-var basePath = '../../../node_modules';
+var basePath = path.resolve(__dirname, '../../../node_modules');
 var bootstrap = path.resolve(basePath, 'bootstrap/dist/js/bootstrap.js');
 var cajon = path.resolve(basePath, 'cajon/cajon.js');
 var knockout = path.resolve(basePath, 'knockout/build/output/knockout-latest.js');
