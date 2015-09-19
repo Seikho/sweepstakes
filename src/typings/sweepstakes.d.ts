@@ -3,10 +3,19 @@ interface NodeRequireFunction {
     config(options: any);
 }
 
+declare module 'facebook' {
+    export = FB;
+}
+
 declare namespace FB {
     function getLoginStatus(callback: LoginCallback): void;
     function init(options: Options): void;
     function login(callback: LoginCallback): void;
+    function api(route: string, callback: ApiCallback): void;
+    
+    interface ApiCallback {
+        (response: any): void;
+    }
     
     interface LoginCallback {
         (status: Status): void;
