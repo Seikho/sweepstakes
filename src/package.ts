@@ -2,7 +2,7 @@ import fs = require('fs');
 import path = require('path');
 export = packageJson;
 
-var packagePath = path.resolve(path.join('..', 'package.json'));
+var packagePath = path.resolve(path.join(__dirname, '..', 'package.json'));
 var packageJson: PackageJson = JSON.parse(fs.readFileSync(packagePath).toString());
 
 interface PackageJson {
