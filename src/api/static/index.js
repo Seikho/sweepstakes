@@ -19,7 +19,7 @@ server.route({
 function addRoute(filename, path) {
     server.route({
         method: 'GET',
-        path: "scripts/libs/" + filename + ".js",
+        path: "/scripts/libs/" + filename + ".js",
         handler: function (request, reply) {
             reply.file(path);
         }

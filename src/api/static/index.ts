@@ -22,7 +22,7 @@ server.route({
 function addRoute(filename: string, path: string) {
     server.route({
         method: 'GET',
-        path: `scripts/libs/${filename}.js`,
+        path: `/scripts/libs/${filename}.js`,
         handler: (request, reply) => {
             reply.file(path);
         }
