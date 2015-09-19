@@ -1,9 +1,11 @@
-var path = require('path');
+import path = require('path');
 var resolve = require('resolve');
+
 var basePath = path.resolve(__dirname, '../../../');
 var options = {
     baseDir: basePath,
     moduleDirectory: 'node_modules',
     package: 'package.json'
 };
-//# sourceMappingURL=libs.js.map
+
+console.log(resolve.sync('bootstrap', options));
