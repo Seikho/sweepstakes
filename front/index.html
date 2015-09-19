@@ -44,7 +44,8 @@
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Link</a></li>
+                    <li><a href="#" data-bind="click: loginButton, text: loginButtonText">
+                    </a></li>
                 </ul>
             </div>
         </div>
@@ -62,14 +63,13 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">Content pane heading</div>
                     <div class="panel-body" style="min-height: 60vh">
-                        Content pane
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="scripts/libs/cajon.js" data-main="scripts/config.js"></script>
+    <script src="scripts/libs/cajon.js" data-main="scripts/libs/config.js"></script>
 </body>
 
 </html>
