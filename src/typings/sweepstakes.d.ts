@@ -9,7 +9,7 @@ declare namespace FB {
     function login(callback: LoginCallback): void;
     
     interface LoginCallback {
-        (status: Status) => void;
+        (status: Status): void;
     }
     
     interface Options {
