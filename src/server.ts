@@ -5,9 +5,13 @@ export = server;
 
 var server = new Hapi.Server();
 server.register(inert, err => {
-    logger.error('Unable to load "inert" middleware');
+    if (!err) return;
+    
+    logger.error(`Unable to load "inert" middleware: ${err}`);
 });
+var port = 1923;
+logger.info(`Web server configured ot listen on port ${port}`)
 
 server.connection({
-    port: 1923
+    port
 });
