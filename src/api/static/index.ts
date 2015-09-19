@@ -1,11 +1,30 @@
 import path = require('path');
-var resolve = require('resolve');
+import server = require('../../server');
+var basePath = '../../../node_modules';
+var bootstrap = path.resolve(basePath, 'bootstrap/dist/js/bootstrap.js');
+var cajon = path.resolve(basePath, 'cajon/cajon.js');
+var knockout = path.resolve(basePath, 'knockout/build/output/knockout-latest.js');
 
-var basePath = path.resolve(__dirname, '../../../');
-var options = {
-    baseDir: basePath,
-    moduleDirectory: 'node_modules',
-    package: 'package.json'
-};
+addRoute('bootstrap', bootstrap);
+addRoute('cajon', cajon);
+addRoute('knockout', knockout);
 
-console.log(resolve.sync('bootstrap', options));
+server.route({
+    method: 'GET',
+    path: '/{param*}',
+    handler: {
+        directory: {
+            path: path.resolve(__dirname, '../../../front')
+        }
+    }
+})
+
+function addRoute(filename: string, path: string) {
+    server.route({
+        method: 'GET',
+        path: `scripts/libs/${filename}.js`,
+        handler: (request, reply) => {
+            reply.file(path);
+        }
+    });
+}
