@@ -1,5 +1,6 @@
 import ko = require('knockout');
 import FB = require('facebook');
+export = MainViewModel;
 
 class MainViewModel {
     constructor(){

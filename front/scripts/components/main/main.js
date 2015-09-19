@@ -25,4 +25,5 @@ var MainViewModel = (function () {
     };
     return MainViewModel;
 })();
+module.exports = MainViewModel;
 //# sourceMappingURL=main.js.map
