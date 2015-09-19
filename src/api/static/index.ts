@@ -4,10 +4,12 @@ var basePath = path.resolve(__dirname, '../../../node_modules');
 var bootstrap = path.resolve(basePath, 'bootstrap/dist/js/bootstrap.js');
 var cajon = path.resolve(basePath, 'cajon/cajon.js');
 var knockout = path.resolve(basePath, 'knockout/build/output/knockout-latest.js');
+var jquery = path.resolve(basePath, 'jquery/dist/jquery.min.js');
 
 addRoute('bootstrap', bootstrap);
 addRoute('cajon', cajon);
 addRoute('knockout', knockout);
+addRoute('jquery', jquery);
 
 server.route({
     method: 'GET',
@@ -15,6 +17,16 @@ server.route({
     handler: {
         directory: {
             path: path.resolve(__dirname, '../../../front')
+        }
+    }
+});
+
+server.route({
+    method: 'GET',
+    path: '/fonts',
+    handler: {
+        directory: {
+            path: path.resolve(__dirname, '../../../node_modules/bootstrap/fonts')
         }
     }
 })
