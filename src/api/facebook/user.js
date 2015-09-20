@@ -14,7 +14,7 @@ module.exports = function getUser(userId) {
                 return reject(err);
             if (typeof body === 'string')
                 body = JSON.parse(body);
-            if (!!body.user || !!body.id)
+            if (!body.name || !body.id)
                 return reject('Unable to retrieve user');
             resolve(body);
         });
