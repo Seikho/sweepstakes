@@ -89,7 +89,7 @@ declare namespace Sweepstakes {
         owners: string;
     }
     
-    interface Sweepstakes {
+    interface Sweepstake {
         id: number;
         name: string;
         description: string;

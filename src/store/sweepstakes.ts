@@ -2,7 +2,7 @@ import db = require('./db');
 import sessions = require('./sessions');
 import users = require('./users');
 
-export function get(userId?: number): Promise<Sweepstakes.Sweepstakes[]> {
+export function get(userId?: number): Promise<Sweepstakes.Sweepstake[]> {
     var query = db('sweepstakes')
         .select();
 
