@@ -12,7 +12,8 @@ server.route({
             return reply(Boom.badRequest('No token provided'));
         sessions.getByToken(token)
             .then(function (us) { return groups.get(us.groups); })
-            .then(reply);
+            .then(reply)
+            .catch(function (err) { return reply(Boom.expectationFailed(err)); });
     }
 });
 server.route({
@@ -24,7 +25,8 @@ server.route({
             return reply(Boom.badRequest('No token provided'));
         sessions.getByToken(token)
             .then(function (us) { return sweepstakes.get(us.userId); })
-            .then(reply);
+            .then(reply)
+            .catch(function (err) { return reply(Boom.expectationFailed(err)); });
     }
 });
 server.route({
