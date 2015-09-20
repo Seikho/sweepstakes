@@ -14,7 +14,7 @@ function debugToken(userToken, appToken) {
     return promise;
 }
 module.exports = function get(userStatus) {
-    accessToken()
+    return accessToken()
         .then(function (token) { return debugToken(userStatus.authResponse.accessToken, token); });
 };
 //# sourceMappingURL=tokenStatus.js.map

@@ -3,7 +3,7 @@ import users = require('../../store/users');
 import accessToken = require('./accessToken');
  
 export = function get(userStatus: FB.Status) {
-    accessToken()
+    return accessToken()
         .then(token => debugToken(userStatus.authResponse.accessToken, token))
 }
 
