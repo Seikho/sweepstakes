@@ -46,6 +46,11 @@ declare namespace FB {
             is_valid: boolean;
             scopes: Array<string>;
             user_id: string;
+            error?: {
+                code: number;
+                message: string;
+                subcode: number;
+            }
         }
     }
     
