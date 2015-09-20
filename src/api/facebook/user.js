@@ -12,6 +12,8 @@ module.exports = function getUser(userId) {
         request.get(url, {}, function (err, res, body) {
             if (err)
                 return reject(err);
+            if (typeof body === 'string')
+                body = JSON.parse(body);
             if (!!body.user || !!body.id)
                 return reject('Unable to retrieve user');
             resolve(body);
