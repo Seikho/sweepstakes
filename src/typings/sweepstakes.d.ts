@@ -71,7 +71,7 @@ declare namespace FB {
 declare namespace Sweepstakes {
     interface Settings {
         secret: string;
-        client_id; string;
+        clientId; string;
     }
     
     interface User {
