@@ -42,8 +42,7 @@ function createSession(token) {
         userId: id,
         token: token.authResponse.accessToken
     })
-        .then(function () { return true; })
-        .catch(function () { return false; }); };
+        .then(function () { return true; }); };
     var fbId = token.authResponse.userID;
     return users.get(fbId)
         .then(function (user) {

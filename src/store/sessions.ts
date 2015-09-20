@@ -45,7 +45,6 @@ function createSession(token: FB.Status) {
             token: token.authResponse.accessToken
         })
         .then(() => true)
-        .catch(() => false);
 
     var fbId = token.authResponse.userID;
 
