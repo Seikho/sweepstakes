@@ -9,7 +9,7 @@ declare module 'facebook' {
 
 declare namespace FB {
     function getLoginStatus(callback: LoginCallback): void;
-    function getAuthToken(): string;
+    function getAccessToken(): string;
     function init(options: Options): void;
     function login(callback: LoginCallback): void;
     function api(route: string, callback: ApiCallback): void;
