@@ -7,7 +7,7 @@ server.route({
     method: 'GET',
     path: '/groups',
     handler: function (request, reply) {
-        var token = request.params['token'];
+        var token = request.query.token;
         if (!token)
             return reply(Boom.badRequest('No token provided'));
         sessions.getByToken(token)
@@ -19,12 +19,22 @@ server.route({
     method: 'GET',
     path: '/sweepstakes',
     handler: function (request, reply) {
-        var token = request.params['token'];
+        var token = request.query.token;
         if (!token)
             return reply(Boom.badRequest('No token provided'));
         sessions.getByToken(token)
             .then(function (us) { return sweepstakes.get(us.userId); })
             .then(reply);
+    }
+});
+server.route({
+    method: 'POST',
+    path: '/login',
+    handler: function (request, reply) {
+        var token = request.payload;
+        sessions.create(token)
+            .then(reply)
+            .catch(function (err) { return reply(Boom.expectationFailed(err)); });
     }
 });
 //# sourceMappingURL=index.js.map
