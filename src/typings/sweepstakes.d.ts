@@ -98,6 +98,11 @@ declare namespace Sweepstakes {
         groupId: number;
     }
     
+    interface Entry {
+        id: number;
+        value: string;
+    }
+    
     interface Session {
         id: number;
         userId: number;
