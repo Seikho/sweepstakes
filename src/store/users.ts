@@ -1,6 +1,6 @@
 import db = require('./db');
 
-function get(id: number | string) {
+export function get(id: number | string) {
     if (typeof id === 'number') {
         return getById(id)
     } else {
@@ -8,21 +8,21 @@ function get(id: number | string) {
     }
 }
 
-function getById(id: number): Promise<Sweepstakes.User> {
+export function getById(id: number): Promise<Sweepstakes.User> {
     return db('users')
         .select()
         .where('id', '=', id)
         .then(users => users[0]);
 }
 
-function getByFacebookId(id: string): Promise<Sweepstakes.User> {
+export function getByFacebookId(id: string): Promise<Sweepstakes.User> {
     return db('users')
         .select()
         .where('facebookId', '=', id)
         .then(users => users[0]);
 }
 
-function create(facebookId: string, name: string): Promise<number> {
+export function create(facebookId: string, name: string): Promise<number> {
     var user = {
         name,
         facebookId,
@@ -35,7 +35,7 @@ function create(facebookId: string, name: string): Promise<number> {
         .then(ids => ids[0]);
 }
 
-function addUserGroup(id: number | string, groupId: number): Promise<boolean> {
+export function addUserGroup(id: number | string, groupId: number): Promise<boolean> {
     return get(id)
         .then(user => {
             var groups: number[] = JSON.parse(user.groups);
@@ -47,7 +47,7 @@ function addUserGroup(id: number | string, groupId: number): Promise<boolean> {
         });
 }
 
-function removeUserGroup(id: number | string, groupId: number): Promise<boolean> {
+export function removeUserGroup(id: number | string, groupId: number): Promise<boolean> {
     return get(id)
         .then(user => {
             var groups: number[] = JSON.parse(user.groups);
@@ -59,7 +59,7 @@ function removeUserGroup(id: number | string, groupId: number): Promise<boolean>
         });
 }
 
-function updateGroups(id: number, groups: number[] | string): Promise<boolean> {
+export function updateGroups(id: number, groups: number[] | string): Promise<boolean> {
     var newGroups = Array.isArray(groups)
         ? JSON.stringify(groups)
         : groups;

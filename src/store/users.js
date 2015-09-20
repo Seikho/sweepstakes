@@ -7,18 +7,21 @@ function get(id) {
         return getByFacebookId(id);
     }
 }
+exports.get = get;
 function getById(id) {
     return db('users')
         .select()
         .where('id', '=', id)
         .then(function (users) { return users[0]; });
 }
+exports.getById = getById;
 function getByFacebookId(id) {
     return db('users')
         .select()
         .where('facebookId', '=', id)
         .then(function (users) { return users[0]; });
 }
+exports.getByFacebookId = getByFacebookId;
 function create(facebookId, name) {
     var user = {
         name: name,
@@ -30,6 +33,7 @@ function create(facebookId, name) {
         .insert(user)
         .then(function (ids) { return ids[0]; });
 }
+exports.create = create;
 function addUserGroup(id, groupId) {
     return get(id)
         .then(function (user) {
@@ -41,6 +45,7 @@ function addUserGroup(id, groupId) {
         return updateGroups(user.id, groups);
     });
 }
+exports.addUserGroup = addUserGroup;
 function removeUserGroup(id, groupId) {
     return get(id)
         .then(function (user) {
@@ -52,6 +57,7 @@ function removeUserGroup(id, groupId) {
         return updateGroups(user.id, groups);
     });
 }
+exports.removeUserGroup = removeUserGroup;
 function updateGroups(id, groups) {
     var newGroups = Array.isArray(groups)
         ? JSON.stringify(groups)
@@ -62,4 +68,5 @@ function updateGroups(id, groups) {
         .then(function () { return true; })
         .catch(function () { return false; });
 }
+exports.updateGroups = updateGroups;
 //# sourceMappingURL=users.js.map
