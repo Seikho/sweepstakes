@@ -1,5 +1,6 @@
 import db = require('./db');
 import getFacebookUser = require('../api/facebook/user');
+import groups = require('./groups');
 
 export function get(id: number | string) {
     if (typeof id === 'number') {
@@ -71,4 +72,9 @@ export function updateGroups(id: number, groups: number[] | string): Promise<boo
         .where('id', '=', id)
         .then(() => true)
         .catch(() => false);
+}
+
+export function getUserGroups(userId: number) {
+    return getById(userId)
+        .then(user => groups.get(user.groups));
 }

@@ -1,5 +1,6 @@
 var db = require('./db');
 var getFacebookUser = require('../api/facebook/user');
+var groups = require('./groups');
 function get(id) {
     if (typeof id === 'number') {
         return getById(id);
@@ -71,4 +72,9 @@ function updateGroups(id, groups) {
         .catch(function () { return false; });
 }
 exports.updateGroups = updateGroups;
+function getUserGroups(userId) {
+    return getById(userId)
+        .then(function (user) { return groups.get(user.groups); });
+}
+exports.getUserGroups = getUserGroups;
 //# sourceMappingURL=users.js.map
