@@ -25,6 +25,7 @@
     "typescript": "1.6.0-beta"
   },
   "dependencies": {
+    "bluebird": "^2.10.0",
     "bootstrap": "^3.3.5",
     "cajon": "^0.2.11",
     "hapi": "^10.0.0",
