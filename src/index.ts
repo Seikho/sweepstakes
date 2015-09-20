@@ -9,4 +9,7 @@ if (createdDb) logger.info('Created database');
 // Load front-end library routes and /front directory handler
 require('./api/static');
 
+// Load web api routes
+require('./api/web');
+
 server.start(() => logger.info('Started web server'));
