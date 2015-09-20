@@ -80,4 +80,14 @@ declare namespace Sweepstakes {
         options?: string;
         groupId: number;
     }
+    
+    interface Session {
+        id: number;
+        userId: number;
+        token: string;
+    }
+    
+    interface UserSession extends User, Session {
+        
+    }
 }
