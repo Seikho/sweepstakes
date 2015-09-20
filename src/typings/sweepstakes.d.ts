@@ -48,6 +48,11 @@ declare namespace FB {
             user_id: string;
         }
     }
+    
+    interface User {
+        name: string;
+        id: string;
+    }
 }
 
 declare namespace Sweepstakes {
