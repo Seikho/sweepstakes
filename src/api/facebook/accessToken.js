@@ -3,13 +3,13 @@ var settings = require('../../store/settings');
 var logger = require('ls-logger');
 function tokenRequest(settings) {
     var options = {
-        client_id: settings.client_id,
+        client_id: settings.clientId,
         client_secret: settings.secret,
         grant_type: 'client_credentials'
     };
     var tokenPromise = new Promise(function (resolve, reject) {
         request
-            .post('https://graph.facebook.com/oauth/access_token', options, function (error, response, body) {
+            .post('https://graph.facebook.com/oauth/access_token', { form: options }, function (error, response, body) {
             if (error)
                 return reject(error);
             var token = authCallback(body);
@@ -31,7 +31,7 @@ function authCallback(result) {
     }
     catch (ex) {
         var split = result.split('=');
-        return result;
+        return split[1];
     }
 }
 module.exports = function getToken() {

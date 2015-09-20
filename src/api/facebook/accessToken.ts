@@ -9,14 +9,14 @@ export = function getToken() {
 
 function tokenRequest(settings: Sweepstakes.Settings): Promise<string> {
     var options = {
-        client_id: settings.client_id,
+        client_id: settings.clientId,
         client_secret: settings.secret,
         grant_type: 'client_credentials'
     };
 
     var tokenPromise = new Promise<string>((resolve, reject) => {
         request
-            .post('https://graph.facebook.com/oauth/access_token', options, (error, response, body) => {
+            .post('https://graph.facebook.com/oauth/access_token', { form: options }, (error, response, body) => {
                 if (error) return reject(error);
 
                 var token = authCallback(body);
@@ -39,6 +39,6 @@ function authCallback(result: string) {
     }
     catch (ex) {
         var split = result.split('=');
-        return result;
+        return split[1];
     }
 }
