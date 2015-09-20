@@ -37,5 +37,47 @@ declare namespace FB {
             userID: string;
         }
     }
+    
+    interface TokenStatus {
+        data: {
+            app_id: string;
+            application: string;
+            expires_at: number;
+            is_valid: boolean;
+            scopes: Array<string>;
+            user_id: string;
+        }
+    }
 }
 
+declare namespace Sweepstakes {
+    interface Settings {
+        secret: string;
+        client_id; string;
+    }
+    
+    interface User {
+        id: number;
+        name: string;
+        groups: string;
+        entries: string;
+        facebookId: string;        
+    }
+    
+    interface Group {
+        id: number;
+        name: string;
+        description: string;
+        owners: string;
+    }
+    
+    interface Sweepstakes {
+        id: number;
+        name: string;
+        description: string;
+        startDate: string;
+        endDate: string;
+        options?: string;
+        groupId: number;
+    }
+}
