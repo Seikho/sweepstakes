@@ -77,4 +77,23 @@ function getUserGroups(userId) {
         .then(function (user) { return groups.get(user.groups); });
 }
 exports.getUserGroups = getUserGroups;
+function addEntry(userId, sweepstakeId, entry) {
+    var saveEntry = function (userId, entries) { return db('users')
+        .update({ entries: JSON.stringify(entries) })
+        .where('id', '=', userId)
+        .then(function () { return true; }); };
+    return get(userId)
+        .then(function (user) {
+        var entries = JSON.parse(user.entries);
+        var hasEntry = entries.some(function (e) { return e.id === sweepstakeId; });
+        if (hasEntry)
+            return Promise.reject('An entry has already been made');
+        entries.push({
+            id: sweepstakeId,
+            value: JSON.stringify(entry)
+        });
+        return saveEntry(user.id, entries);
+    });
+}
+exports.addEntry = addEntry;
 //# sourceMappingURL=users.js.map

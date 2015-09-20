@@ -78,3 +78,26 @@ export function getUserGroups(userId: number) {
     return getById(userId)
         .then(user => groups.get(user.groups));
 }
+
+export function addEntry(userId: number | string, sweepstakeId: number, entry: any): Promise<boolean> {
+
+    var saveEntry = (userId: number, entries: Sweepstakes.Entry[]) => db('users')
+        .update({ entries: JSON.stringify(entries) })
+        .where('id', '=', userId)
+        .then(() => true);
+
+    return get(userId)
+        .then(user => {
+            var entries: Sweepstakes.Entry[] = JSON.parse(user.entries);
+            var hasEntry = entries.some(e => e.id === sweepstakeId);
+
+            if (hasEntry) return Promise.reject('An entry has already been made');
+
+            entries.push({
+                id: sweepstakeId,
+                value: JSON.stringify(entry)
+            });
+
+            return saveEntry(user.id, entries);
+        });
+}
