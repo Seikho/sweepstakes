@@ -1,4 +1,5 @@
 import db = require('./db');
+import getFacebookUser = require('../api/facebook/user');
 
 export function get(id: number | string) {
     if (typeof id === 'number') {
@@ -22,17 +23,18 @@ export function getByFacebookId(id: string): Promise<Sweepstakes.User> {
         .then(users => users[0]);
 }
 
-export function create(facebookId: string, name: string): Promise<number> {
+export function create(facebookId: string): Promise<number> {
     var user = {
-        name,
+        name: null,
         facebookId,
         entries: '[]',
         groups: '[]'
     }
 
-    return db('users')
-        .insert(user)
-        .then(ids => ids[0]);
+    return getFacebookUser(facebookId)
+        .then(fbUser => user.name = fbUser.name)
+        .then(() => db('users').insert(user))
+        .then(ids => ids[0])
 }
 
 export function addUserGroup(id: number | string, groupId: number): Promise<boolean> {

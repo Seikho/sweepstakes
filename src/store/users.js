@@ -1,4 +1,5 @@
 var db = require('./db');
+var getFacebookUser = require('../api/facebook/user');
 function get(id) {
     if (typeof id === 'number') {
         return getById(id);
@@ -22,15 +23,16 @@ function getByFacebookId(id) {
         .then(function (users) { return users[0]; });
 }
 exports.getByFacebookId = getByFacebookId;
-function create(facebookId, name) {
+function create(facebookId) {
     var user = {
-        name: name,
+        name: null,
         facebookId: facebookId,
         entries: '[]',
         groups: '[]'
     };
-    return db('users')
-        .insert(user)
+    return getFacebookUser(facebookId)
+        .then(function (fbUser) { return user.name = fbUser.name; })
+        .then(function () { return db('users').insert(user); })
         .then(function (ids) { return ids[0]; });
 }
 exports.create = create;
