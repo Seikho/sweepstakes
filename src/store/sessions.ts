@@ -19,7 +19,7 @@ export function getByToken(token: FB.Status|string): Promise<Sweepstakes.UserSes
         .then(responses => responses[0]);
 }
 
-export function create(token: FB.Status) {
+export function create(token: FB.Status): Promise<boolean> {
     return getByToken(token)
         .then(session => {
             if (!!session) return Promise.resolve(true);
