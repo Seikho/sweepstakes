@@ -93,8 +93,7 @@ declare namespace Sweepstakes {
         id: number;
         name: string;
         description: string;
-        startDate: string;
-        endDate: string;
+        state: SweepstakeState
         options?: string;
         groupId: number;
     }
@@ -105,7 +104,11 @@ declare namespace Sweepstakes {
         token: string;
     }
     
-    interface UserSession extends User, Session {
-        
+    interface UserSession extends User, Session {        
+    }
+    
+    const enum SweepstakeState {
+        Inactive,
+        Active
     }
 }
