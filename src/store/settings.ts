@@ -1,8 +1,14 @@
 import db = require('./db');
-export = get;
 
-function get(): Promise<Sweepstakes.Settings> {
+export function get(): Promise<Sweepstakes.Settings> {
     return db('settings')
-        .select()        
+        .select()
         .then((settings: Sweepstakes.Settings[]) => settings[0]);
+}
+
+export function setSecret(secret: string): Promise<boolean> {
+    return db('settings')
+        .update({ secret })
+        .then(() => true)
+        .catch(() => false);
 }
