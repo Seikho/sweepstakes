@@ -40,7 +40,7 @@ declare namespace FB {
     }
     
     interface TokenStatus {
-        data: {
+        data?: {
             app_id: string;
             application: string;
             expires_at: number;
@@ -52,7 +52,14 @@ declare namespace FB {
                 message: string;
                 subcode: number;
             }
+        },
+        error?: {
+            message: string,
+            type: string,
+            is_transient: boolean,
+            code: number
         }
+        
     }
     
     interface User {
