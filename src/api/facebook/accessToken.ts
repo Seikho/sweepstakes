@@ -7,14 +7,14 @@ export = function getToken() {
         .then(tokenRequest);
 }
 
-function tokenRequest(settings: Sweepstakes.Settings) {
+function tokenRequest(settings: Sweepstakes.Settings): Promise<string> {
     var options = {
         client_id: settings.client_id,
         client_secret: settings.secret,
         grant_type: 'client_credentials'
     };
 
-    var tokenPromise = new Promise((resolve, reject) => {
+    var tokenPromise = new Promise<string>((resolve, reject) => {
         request
             .post('https://graph.facebook.com/oauth/access_token', options, (error, response, body) => {
                 if (error) return reject(error);
