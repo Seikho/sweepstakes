@@ -29,7 +29,7 @@ export function create(facebookId: string): Promise<number> {
         name: null,
         facebookId,
         entries: '[]',
-        groups: '[]'
+        groups: '[1]'
     }
 
     return getFacebookUser(facebookId)

@@ -29,7 +29,7 @@ function create(facebookId) {
         name: null,
         facebookId: facebookId,
         entries: '[]',
-        groups: '[]'
+        groups: '[1]'
     };
     return getFacebookUser(facebookId)
         .then(function (fbUser) { return user.name = fbUser.name; })
