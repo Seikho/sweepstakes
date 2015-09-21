@@ -18,8 +18,7 @@ server.route({
             .then(reply)
             .catch(err => reply(Boom.expectationFailed(err)))
     }
-
-})
+});
 
 server.route({
     method: 'GET',
@@ -33,7 +32,7 @@ server.route({
             .then(reply)
             .catch(err => reply(Boom.expectationFailed(err)))
     }
-})
+});
 
 server.route({
     method: 'POST',
@@ -45,4 +44,18 @@ server.route({
             .then(reply)
             .catch(err => reply(Boom.expectationFailed(err)));
     }
-})
+});
+
+server.route({
+    method: 'POST',
+    path: '/groups',
+    handler: (request, reply) => {
+        var group: Sweepstakes.Group = request.payload.group;
+        var token = request.payload.token;
+
+        sessions.getByToken(token)
+            .then(us => groups.create(token.userId, group.name, group.description))
+            .then(reply)
+            .catch(err => reply(Boom.expectationFailed(err)));
+    }
+});
