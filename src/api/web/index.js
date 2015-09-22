@@ -51,4 +51,16 @@ server.route({
             .catch(function (err) { return reply(Boom.expectationFailed(err)); });
     }
 });
+server.route({
+    method: 'POST',
+    path: '/sweepstakes',
+    handler: function (request, reply) {
+        var newStakes = request.payload.sweepstakes;
+        var token = request.payload.token;
+        sessions.getByToken(token)
+            .then(function (us) { return sweepstakes.create(newStakes.name, newStakes.description, newStakes.groupId); })
+            .then(reply)
+            .catch(function (err) { return reply(Boom.expectationFailed(err)); });
+    }
+});
 //# sourceMappingURL=index.js.map

@@ -59,3 +59,17 @@ server.route({
             .catch(err => reply(Boom.expectationFailed(err)));
     }
 });
+
+server.route({
+    method: 'POST',
+    path: '/sweepstakes',
+    handler: (request, reply) => {
+        var newStakes: Sweepstakes.Sweepstake = request.payload.sweepstakes;
+        var token: FB.Status = request.payload.token;
+        
+        sessions.getByToken(token)
+            .then(us => sweepstakes.create(newStakes.name, newStakes.description, newStakes.groupId))
+            .then(reply)
+            .catch(err => reply(Boom.expectationFailed(err)));     
+    }
+});
