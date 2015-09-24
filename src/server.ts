@@ -10,7 +10,7 @@ server.register(inert, err => {
     logger.error(`Unable to load "inert" middleware: ${err}`);
 });
 var port = 1923;
-logger.info(`Web server configured ot listen on port ${port}`)
+logger.info(`Web server configured to listen on port ${port}`)
 
 server.connection({
     port
